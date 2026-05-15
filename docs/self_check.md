@@ -59,6 +59,17 @@ workspace/records/run_xxx.md 每次新增，不覆盖旧记录。
 只有用户明确要求保留旧版时，才在 Figma 中新建副本或追加版本。
 ```
 
+## 断点续跑检查
+
+```text
+每完成一个阶段产物后必须立即落盘。
+流程中断时必须记录最后成功阶段、已生成产物、阻塞原因和恢复入口。
+恢复执行时必须先读取最近一次相关 run record。
+恢复执行时必须检查 workspace/intents、workspace/priority_maps、workspace/layout_specs 中已有产物。
+已通过 Gate 且未受上游修改影响的产物可以复用。
+恢复 Wireframe 前必须重新执行 Wireframe Preflight Gate。
+```
+
 ## 示例检查
 
 ```text

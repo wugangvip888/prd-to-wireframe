@@ -33,7 +33,7 @@
 | file_structure.md | 当前文件架构 | docs/ | 记录当前真实存在的目录和核心文件结构 | 人工维护 | 文档治理 |
 | workflow.md | 工作流说明 | docs/ | 记录 PRD → Intent → Priority Map → Layout Spec → Wireframe 的流程顺序和 Harness Gate | 人工维护 | 文档治理 |
 | process_rules.md | 流程治理规则 | docs/ | 定义 prompts、execution、rules、records、docs 的职责边界和读取顺序 | 人工维护 | 文档治理 |
-| self_check.md | 自检清单 | docs/ | 定义结构、引用、流程、Wireframe 尺寸、重跑策略和示例使用的健康检查项 | 人工维护 | 文档治理 |
+| self_check.md | 自检清单 | docs/ | 定义结构、引用、流程、Wireframe 尺寸、重跑策略、断点续跑和示例使用的健康检查项 | 人工维护 | 文档治理 |
 
 ### Prompts
 
@@ -60,7 +60,7 @@
 
 | English Name | 中文名称 | 路径 | 作用 | 生成方式 | 维护流程 |
 |---|---|---|---|---|---|
-| 00_run_full_pipeline.md | 全流程执行文档 | execution/ | 定义从 PRD 到 Figma Wireframe 的自动编排、Gate 和停止条件 | 人工维护 | 全流程 |
+| 00_run_full_pipeline.md | 全流程执行文档 | execution/ | 定义从 PRD 到 Figma Wireframe 的自动编排、Gate、停止条件和断点续跑 | 人工维护 | 全流程 |
 | 01_prd_to_intent.md | PRD 到 Intent 执行文档 | execution/ | 定义从 PRD 生成 Intent 的输入、输出、步骤和自检 | 人工维护 | Flow 01 |
 | 02_intent_to_priority_map.md | Intent 到权重排序执行文档 | execution/ | 定义生成 Priority Map 的输入、输出、步骤和 Priority Gate | 人工维护 | Flow 02 |
 | 03_priority_map_to_layout_spec.md | 权重排序到 Layout Spec 执行文档 | execution/ | 定义生成 Layout Spec 的输入、输出、步骤和 Layout Gate | 人工维护 | Flow 03 |
@@ -76,7 +76,7 @@
 | {page_id}.md | 页面 Intent | workspace/intents/ | 记录单个页面的目标、首要动作、视觉重心、主要操作和硬约束 | AI 生成 / 人工审核 | Flow 01 |
 | {page_id}.md | 页面元素权重排序 | workspace/priority_maps/ | 记录单个页面元素的 P0/P1/P2/P3 分级和原因 | AI 生成 / 人工审核 | Flow 02 |
 | {page_id}.md | 页面 Layout Spec | workspace/layout_specs/ | 记录单个页面的可见布局模块、权重、关键内容和 PRD 约束 | AI 生成 / 人工审核 | Flow 03 |
-| run_xxx.md | 运行记录 | workspace/records/ | 每次执行新增记录，记录输入来源、执行范围、Figma 地址、Figma 内部图层名称、输出结果、Frame ID、人工确认和 Wireframe 后变更 | AI 生成 / 人工审核 | Flow 04 |
+| run_xxx.md | 运行记录 | workspace/records/ | 每次执行新增记录，记录输入来源、执行范围、Figma 地址、Figma 内部图层名称、输出结果、Frame ID、断点续跑信息、人工确认和 Wireframe 后变更 | AI 生成 / 人工审核 | Flow 04 |
 | README.md | 工作区说明 | workspace/ | 说明 workspace 目录用途 | 人工维护 | 文档治理 |
 
 ### Examples

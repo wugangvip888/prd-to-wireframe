@@ -55,7 +55,9 @@ workspace/records/run_xxx.md
 11. 只有通过 Wireframe Preflight Gate 的页面，才进入 Figma Wireframe 生成。
 12. 按 `execution/wireframe_construction_method.md` 和 `rules/structure_preparation_rules.md` 生成 Figma Frame，保留后续组件、Token、Pattern 所需结构边界。
 13. 重跑时默认覆盖当前页面的 Intent、Priority Map、Layout Spec 和 Figma 内部图层名称对应的线框图内容。
-14. 新增 `workspace/records/run_xxx.md`，记录输入、页面范围、Gate 结果、Figma 地址、Figma 内部图层名称、Frame ID、人工确认点和 Wireframe 后变更。
+14. 每完成一个阶段产物后立即落盘，避免中断后丢失进度。
+15. 新增 `workspace/records/run_xxx.md`，记录输入、页面范围、Gate 结果、Figma 地址、Figma 内部图层名称、Frame ID、人工确认点和 Wireframe 后变更。
+16. 如果流程中断，尽可能写入或补写 run record，记录最后成功阶段、已生成文件、阻塞原因和恢复入口。
 
 ## 停止条件
 
@@ -87,6 +89,29 @@ Figma Frame ID：
 Frame 名称：
 Wireframe 后变更：
 人工确认点：
+```
+
+## 断点续跑字段
+
+```text
+执行状态：running / blocked / completed
+最后成功阶段：
+已生成产物：
+未完成阶段：
+阻塞原因：
+恢复入口：
+是否可复用已生成产物：
+需要重跑的范围：
+```
+
+## 恢复策略
+
+```text
+恢复执行时，先读取最近一次相关 run record。
+检查 workspace/intents、workspace/priority_maps、workspace/layout_specs 中已存在的产物。
+已通过 Gate 且未受上游修改影响的产物可以复用。
+如果 PRD 或上游产物发生变化，受影响的下游产物必须重新生成。
+恢复 Wireframe 生成前，必须重新执行 Wireframe Preflight Gate。
 ```
 
 ## 重跑策略
