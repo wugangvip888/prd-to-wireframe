@@ -1,0 +1,324 @@
+# Wireframe Construction Method
+
+## 目标
+
+本方法用于生成一套可直接支撑以下工作的结构化线框图骨架：
+
+```text
+真实设计稿绘制
+Auto Layout 搭建
+命名系统参考
+组件候选识别
+Token / Pattern 采样参考
+AI 后续生成页面时的结构输入
+```
+
+## 输入
+
+生成线框图时必须同时读取：
+
+```text
+workspace/PRD/{prd_file}.md
+workspace/intents/{page_id}.md
+workspace/priority_maps/{page_id}.md
+workspace/layout_specs/{page_id}.md
+rules/wireframe_rules.md
+rules/structure_preparation_rules.md
+rules/layout_spec_rules.md
+```
+
+判定顺序：
+
+```text
+PRD > rules > Intent > Priority Map > Layout Spec
+```
+
+解释：
+
+```text
+PRD 是业务硬边界，不可违反。
+rules 是生成与检查约束。
+Intent 是页面目标与状态语义补充。
+Priority Map 是页面元素权重依据。
+Layout Spec 是页面结构依据。
+```
+
+## 构造顺序
+
+```text
+1. 建立 Page Frame
+2. 建立 Module Frame
+3. 建立 Control Frame
+4. 放入 Element
+5. 应用 P0/P1/P2/P3 层级表达
+6. 执行单页自检
+7. 执行跨页一致性检查
+```
+
+## Page Frame
+
+统一命名：
+
+```text
+[page_number]_[page_name]_state_[state_value]
+```
+
+要求：
+
+```text
+必须保留真实页面编号。
+必须显式写 state。
+默认态必须写 state_default。
+状态值必须是语义词，不允许位置词或临时词。
+不允许中文、不允许无语义数字尾缀。
+内容只包含当前页面当前状态。
+```
+
+示例：
+
+```text
+01_homepage_state_default
+02_text_result_state_empty
+07_doc_translation_state_uploading
+```
+
+
+## Page Frame 尺寸
+
+默认移动端线框图 Page Frame 使用：
+
+```text
+width: 360
+height: 780
+```
+
+执行要求：
+
+```text
+同一批标准页面 Frame 必须保持相同尺寸。
+除非 PRD 明确要求其他设备规格，不得为单个页面临时改变 Page Frame 尺寸。
+如果 PRD 明确要求平板、桌面端、横屏或特殊容器，先在 Layout Spec 中记录目标设备和尺寸依据，再生成对应 Frame。
+```
+
+## 页面区排布
+
+默认页面区排布：
+
+```text
+排列方向：横向排列
+顶边位置：y = 0
+默认起点：x = 0
+Frame 间距：40
+默认 x 步进：400
+默认尺寸：360 x 780
+```
+
+执行要求：
+
+```text
+所有标准页面 Frame 顶边对齐。
+同一页面多状态相邻排列。
+不同页面按页面编号或用户确认的页面顺序排列。
+页面区不混入说明草图、组件参考内容或废弃 Frame。
+组件参考区如需预留，必须与标准页面区分离，不得作为当前阶段正式输出。
+```
+
+## 系统 UI 与安全区
+
+默认不生成：
+
+```text
+状态栏
+灵动岛
+刘海屏占位
+Home Indicator
+系统导航栏
+安全区占位
+设备外壳
+```
+
+只有 PRD 明确要求状态栏适配、灵动岛适配、系统 UI 避让、安全区表达或固定系统区域时，才允许表达。
+
+允许表达时：
+
+```text
+必须先写入 Layout Spec 的页面级规则或模块描述。
+在线框图中作为 P3 或页面结构约束处理。
+不得作为装饰元素。
+不得抢占 P0/P1 主任务层级。
+```
+
+## 页面内部层级
+
+页面内部按 4 层组织：
+
+```text
+Page Frame
+  Module Frame
+    Control Frame
+      Element
+```
+
+解释：
+
+```text
+Page Frame：页面状态容器。
+Module Frame：页面级功能模块或稳定功能分区。
+Control Frame：可交互控件或稳定局部结构。
+Element：文本、描边、图形、占位内容。
+```
+
+禁止跳层乱放：
+
+```text
+页面下直接散放按钮和图标。
+控件元素没有父级容器。
+同类控件结构深度不一致。
+```
+
+## Module Frame
+
+模块来自 Layout Spec 中的可见布局区块。
+
+满足以下任一条件，必须成为 Module Frame：
+
+```text
+在 Layout Spec 中是独立模块。
+在页面中承担明确功能分区。
+后续设计稿中需要整体做 Auto Layout。
+会被整体移动、替换、复用。
+会作为组件、Token 或 Pattern 采样的结构上下文。
+```
+
+命名要求：
+
+```text
+使用 snake_case。
+名称表达功能，不表达位置。
+名称稳定，不带临时数字。
+同语义模块跨页面尽量同名。
+```
+
+## Control Frame
+
+满足以下任一条件，必须成为 Control Frame：
+
+```text
+可点击。
+有“背景 + 图标/文字”组合。
+是局部复用单元。
+后续设计稿中需要单独调间距、对齐、状态。
+会成为组件候选或组件内部结构。
+```
+
+控件命名优先使用：
+
+```text
+[semantic_name]_action
+[semantic_name]_button
+[semantic_name]_icon
+[semantic_name]_capsule
+[semantic_name]_tab
+[semantic_name]_card
+[semantic_name]_input
+```
+
+禁止：
+
+```text
+source_read_icon_92
+copy_icon_186
+icon_left
+button_top
+group_12
+```
+
+## Element
+
+以下对象可以作为 Element，不必单独成 Frame：
+
+```text
+纯文本占位。
+单根分割线。
+纯装饰矩形。
+图标内部的小线段、小几何。
+```
+
+常用命名：
+
+```text
+label
+value
+placeholder
+helper_text
+divider
+container_bg
+button_bg
+capsule_bg
+icon_container
+```
+
+## 图标按钮结构
+
+图标按钮使用：
+
+```text
+xxx_action
+  icon_container
+  xxx_icon
+```
+
+线框图阶段可见表达：
+
+```text
+icon_container = 灰色背景
+xxx_icon = 中文功能说明文字
+```
+
+关键要求：
+
+```text
+icon_container 是图标控件唯一可见圆形。
+父级 xxx_action 只作为结构容器，不再绘制圆形背景或圆形描边。
+中文功能说明文字必须完整表达图标功能。
+图层命名保持英文语义命名。
+不允许双圆形表达。
+```
+
+## 胶囊控件结构
+
+胶囊控件使用：
+
+```text
+xxx_capsule
+  capsule_bg
+  label
+  icon_container / icon（按实际需要）
+```
+
+胶囊控件必须作为 Control Frame，不得只用散落的矩形和文本表达。
+
+## P0/P1/P2/P3 应用
+
+```text
+P0：最强线框层级，可用更明确边界、更大区域、更深灰阶表达。
+P1：核心操作层级，可用标准控件尺寸和清晰边界表达。
+P2：辅助层级，可用中灰、较弱边界或较小控件表达。
+P3：弱层级，可用浅灰、占位线、弱边界或背景面表达。
+```
+
+同一控件类型在同一优先级下必须保持一致；不同优先级导致的视觉差异必须能从 Priority Map 中追溯。
+
+## 自检顺序
+
+```text
+0. PRD 强约束：对应节点是否存在，可见内容是否表达约束。
+1. 状态归属：当前 Frame 表达哪个页面、哪个状态。
+2. 结构一致性：模块是否完整，是否有多余模块，是否符合四层结构。
+3. 业务规则：PRD 强逻辑是否被满足。
+4. 命名规则：Page、Module、Control、Element 命名是否符合 rules/wireframe_rules.md。
+5. 复用一致性：同类控件、图标、灰阶、尺寸和命名是否一致。
+6. 结构预备：组件候选、Token 采样父级和 Pattern 候选边界是否清晰。
+```
+
+如果 PRD 约束自检或状态归属无法确认，后续检查不得继续执行。
