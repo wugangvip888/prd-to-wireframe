@@ -1,0 +1,7 @@
+interface:
+  display_name: "PRD to Wireframe"
+  short_description: "Turn PRDs into gated wireframe artifacts"
+  default_prompt: "Use $prd-to-wireframe to convert this PRD into Intent, Priority Map, Layout Spec, and Figma wireframes."
+
+policy:
+  allow_implicit_invocation: true

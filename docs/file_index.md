@@ -13,6 +13,8 @@
 | prompts/ | Prompt 层 | 存放全流程入口 Prompt 和四段分步执行 Prompt | 已建立 |
 | rules/ | 规则层 | 存放 Intent、Priority Map、Layout Spec、Wireframe、Structure Preparation 和 Harness 的判断规则 | 已建立 |
 | execution/ | 执行层 | 记录每一步怎么执行、输入输出和审核点 | 已建立 |
+| skills/ | Skill 层 | 存放可复用的 Codex skill，用于同事复用 PRD 到线框图流程 | 已建立 |
+| skills/prd-to-wireframe/ | PRD 到线框图 Skill | 将本仓库流程封装为可触发、可复用的 skill | 已建立 |
 | workspace/ | 当前项目工作区 | 存放当前项目 PRD、生成结果和运行记录 | 已建立 |
 | workspace/PRD/ | PRD 输入目录 | 存放当前项目原始 PRD | 已建立 |
 | workspace/figma_targets.md | Figma 目标登记 | 存放当前项目线框图生成的 Figma 地址和内部图层名称 | 已建立 |
@@ -64,6 +66,16 @@
 | 03_priority_map_to_layout_spec.md | 权重排序到 Layout Spec 执行文档 | execution/ | 定义生成 Layout Spec 的输入、输出、步骤和 Layout Gate | 人工维护 | Flow 03 |
 | 04_layout_spec_to_wireframe.md | Layout Spec 到线框图执行文档 | execution/ | 定义 Wireframe Preflight、Figma 线框图生成和变更记录要求 | 人工维护 | Flow 04 |
 | wireframe_construction_method.md | 线框图构造方法 | execution/ | 定义 Page Frame、Module Frame、Control Frame、Element 的构造顺序和自检顺序 | 人工维护 | Flow 04 |
+
+### Skills
+
+| English Name | 中文名称 | 路径 | 作用 | 生成方式 | 维护流程 |
+|---|---|---|---|---|---|
+| SKILL.md | Skill 入口 | skills/prd-to-wireframe/ | 定义 PRD 到线框图 skill 的触发条件、输入、执行顺序和停止条件 | 人工维护 | Skill 复用 |
+| openai.yaml | Skill UI 元数据 | skills/prd-to-wireframe/agents/ | 定义 skill 展示名称、简述和默认提示 | 人工维护 | Skill 复用 |
+| workflow-map.md | 工作流映射 | skills/prd-to-wireframe/references/ | 映射 prompts、execution 和 rules 的读取入口 | 人工维护 | Skill 复用 |
+| artifact-contract.md | 产物契约 | skills/prd-to-wireframe/references/ | 记录输入、输出、Run Record 字段和覆盖规则 | 人工维护 | Skill 复用 |
+| reuse-and-privacy.md | 复用与隐私规则 | skills/prd-to-wireframe/references/ | 记录共享前不得提交真实 PRD、Figma 链接和生成数据的规则 | 人工维护 | Skill 复用 |
 
 ### Workspace
 
