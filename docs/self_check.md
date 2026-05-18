@@ -70,14 +70,6 @@ workspace/records/run_xxx.md 每次新增，不覆盖旧记录。
 恢复 Wireframe 前必须重新执行 Wireframe Preflight Gate。
 ```
 
-## 示例检查
-
-```text
-examples/translation_app/ 当前只作为人工格式参考。
-examples/translation_app/ 不进入默认执行链。
-如果未来启用 few-shot，必须先在 prompts、execution 或 rules 中明确读取方式和禁止复制业务内容的边界。
-```
-
 ## 系统文件检查
 
 ```text

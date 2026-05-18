@@ -48,5 +48,3 @@ PRD
 2. `prompts/02_intent_to_priority_map.md`
 3. `prompts/03_priority_map_to_layout_spec.md`
 4. `prompts/04_layout_spec_to_wireframe.md`
-
-示例见 `examples/translation_app/`。

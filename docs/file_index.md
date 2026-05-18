@@ -20,8 +20,6 @@
 | workspace/priority_maps/ | 元素权重排序目录 | 每个页面一个 Priority Map 文件 | 已建立，待生成 |
 | workspace/layout_specs/ | Layout Spec 输出目录 | 每个页面一个 Layout Spec 文件 | 已建立，待生成 |
 | workspace/records/ | 运行记录目录 | 记录每次执行输入、范围、输出和人工确认 | 已建立，待生成 |
-| examples/ | 示例目录 | 存放示例项目，帮助理解格式，不作为通用规则 | 已建立 |
-| examples/translation_app/ | 翻译 App 示例 | 从旧项目抽取的示例 PRD、Intent、Priority Map 和 Layout Spec | 已建立 |
 
 ## 文件索引
 
@@ -33,7 +31,7 @@
 | file_structure.md | 当前文件架构 | docs/ | 记录当前真实存在的目录和核心文件结构 | 人工维护 | 文档治理 |
 | workflow.md | 工作流说明 | docs/ | 记录 PRD → Intent → Priority Map → Layout Spec → Wireframe 的流程顺序和 Harness Gate | 人工维护 | 文档治理 |
 | process_rules.md | 流程治理规则 | docs/ | 定义 prompts、execution、rules、records、docs 的职责边界和读取顺序 | 人工维护 | 文档治理 |
-| self_check.md | 自检清单 | docs/ | 定义结构、引用、流程、Wireframe 尺寸、重跑策略、断点续跑和示例使用的健康检查项 | 人工维护 | 文档治理 |
+| self_check.md | 自检清单 | docs/ | 定义结构、引用、流程、Wireframe 尺寸、重跑策略和断点续跑的健康检查项 | 人工维护 | 文档治理 |
 
 ### Prompts
 
@@ -79,23 +77,12 @@
 | run_xxx.md | 运行记录 | workspace/records/ | 每次执行新增记录，记录输入来源、执行范围、Figma 地址、Figma 内部图层名称、输出结果、Frame ID、断点续跑信息、人工确认和 Wireframe 后变更 | AI 生成 / 人工审核 | Flow 04 |
 | README.md | 工作区说明 | workspace/ | 说明 workspace 目录用途 | 人工维护 | 文档治理 |
 
-### Examples
-
-| English Name | 中文名称 | 路径 | 作用 | 生成方式 | 维护流程 |
-|---|---|---|---|---|---|
-| PRD.md | 翻译 App 示例 PRD | examples/translation_app/ | 示例项目的 PRD 输入 | 从旧项目复制 | 示例维护 |
-| project_rules.md | 示例项目业务规则 | examples/translation_app/ | 存放翻译 App 专属规则，不进入通用规则 | 人工维护 | 示例维护 |
-| 01_homepage.md | 首页 Intent 示例 | examples/translation_app/intents/ | 展示 Intent 文件格式 | 从旧项目复制 | 示例维护 |
-| 01_homepage.md | 首页 Priority Map 示例 | examples/translation_app/priority_maps/ | 展示 P0/P1/P2/P3 权重排序格式 | 人工生成 | 示例维护 |
-| 01_homepage.md | 首页 Layout Spec 示例 | examples/translation_app/layout_specs/ | 展示 Layout Spec 文件格式 | 从旧项目复制 | 示例维护 |
-
 ## 维护规则
 
 ```text
 新增、删除、重命名目录或核心文件时，必须同步更新 docs/file_structure.md。
 新增、删除、重命名核心文件或改变文件职责时，必须同步更新 docs/file_index.md。
 只修改文件正文内容且不改变职责时，不需要更新 file_index.md 或 file_structure.md。
-示例项目中的业务规则不得上升为通用规则，除非已确认可复用于多个项目。
 ```
 
 ## 当前缺口

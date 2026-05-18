@@ -82,6 +82,20 @@ Layout Spec 是页面结构依据。
 07_doc_translation_state_uploading
 ```
 
+## 页面身份与标题图层
+
+执行要求：
+
+```text
+Page Frame 名称已经表达页面和状态身份，不再额外创建 page_title 图层。
+顶部导航可见标题使用 nav_title。
+顶部导航可见副标题使用 nav_subtitle。
+页面主体中真实存在的内容标题使用 content_title 或具体模块语义名称。
+不得同时使用 page_title 和 nav_title 表达同一标题。
+不得同时使用 page_subtitle、subtitle_mode 或 nav_subtitle 表达同一副标题。
+如果 page_subtitle 与 subtitle_mode 内容重复，删除重复项并统一收敛为 nav_subtitle。
+```
+
 
 ## Page Frame 尺寸
 
@@ -216,6 +230,7 @@ Element：文本、描边、图形、占位内容。
 ```text
 [semantic_name]_action
 [semantic_name]_button
+[semantic_name]_cta
 [semantic_name]_icon
 [semantic_name]_capsule
 [semantic_name]_tab
@@ -285,6 +300,29 @@ icon_container 是图标控件唯一可见圆形。
 不允许双圆形表达。
 ```
 
+## 文字按钮结构
+
+文字按钮或带文字操作控件使用：
+
+```text
+xxx_button / xxx_action
+xxx_cta
+  button_bg（按实际需要）
+  label
+```
+
+执行要求：
+
+```text
+按钮类控件包括 xxx_button、xxx_action 和 xxx_cta。
+如果按钮或操作控件有可见文字，文字必须在按钮背景或按钮 Control Frame 的固定文字框内水平居中。
+如果按钮或操作控件有可见文字，文字必须在按钮背景或按钮 Control Frame 的固定文字框内垂直居中。
+按钮文字可以使用固定宽度文字框，但不得保持左对齐或顶部对齐。
+不得用固定左边距模拟按钮文字位置。
+图标 + 文字组合按钮允许文字相对图标偏移，但整体内容组仍必须在按钮容器内视觉居中。
+校验按钮文字时，必须检查文字框内文字对齐方式为水平居中和垂直居中。
+```
+
 ## 胶囊控件结构
 
 胶囊控件使用：
@@ -297,6 +335,29 @@ xxx_capsule
 ```
 
 胶囊控件必须作为 Control Frame，不得只用散落的矩形和文本表达。
+
+## Tab 控件结构
+
+Tab 控件使用：
+
+```text
+xxx_tabs
+  selected_tab_label
+  unselected_tab_label
+  selected_indicator
+```
+
+执行要求：
+
+```text
+选中 Tab 文字使用 600 字重。
+未选中 Tab 文字使用正常字重。
+选中 Tab 底部必须有 10 x 4 黑色色块作为 selected_indicator。
+selected_indicator 必须与选中 Tab 固定文字框在水平方向居中对齐。
+选中态文字可以使用固定宽度文字框，但文字必须在该文字框内水平、垂直居中。
+校验时必须同时检查 selected_indicator 是否对齐到固定文字框中心，以及选中文字是否在文字框内水平、垂直居中。
+不使用方括号、按钮背景或胶囊背景表达普通 Tab 选中态。
+```
 
 ## P0/P1/P2/P3 应用
 

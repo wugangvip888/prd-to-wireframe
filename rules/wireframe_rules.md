@@ -69,6 +69,28 @@ page_left
 frame_12
 ```
 
+## 页面身份与标题图层规则
+
+```text
+Page Frame 名称负责表达页面和状态身份。
+顶部导航可见标题使用 nav_title。
+顶部导航可见副标题使用 nav_subtitle。
+页面主体中真实存在的内容标题可使用 content_title 或具体模块语义命名。
+不得额外生成通用 page_title 图层。
+不得同时使用 page_title 和 nav_title 表达同一标题。
+不得同时使用 page_subtitle、subtitle_mode 或 nav_subtitle 表达同一副标题。
+```
+
+说明：
+
+```text
+如果标题属于顶部导航，统一命名为 nav_title。
+如果副标题属于顶部导航，统一命名为 nav_subtitle。
+如果标题属于模块内容，命名应跟随模块语义，例如 outline_title_label、sheet_title。
+如果页面身份已由 Page Frame 名称表达，不再创建额外标题图层。
+同一可见副标题只能保留一个语义图层；如果 page_subtitle 与 subtitle_mode 内容重复，删除重复项并统一收敛为 nav_subtitle。
+```
+
 
 ## Page Frame 尺寸规则
 
@@ -242,6 +264,7 @@ box_23
 ```text
 [semantic_name]_action
 [semantic_name]_button
+[semantic_name]_cta
 [semantic_name]_icon
 [semantic_name]_capsule
 [semantic_name]_tab
@@ -289,6 +312,29 @@ icon_container
 Element 命名表达元素角色，不表达坐标。
 胶囊控件内部优先使用 capsule_bg、label、icon、icon_container。
 按钮控件内部优先使用 button_bg、label、icon_container、xxx_icon。
+```
+
+## 文字按钮标准结构
+
+文字按钮或带文字操作控件使用：
+
+```text
+xxx_button / xxx_action
+xxx_cta
+  button_bg（按实际需要）
+  label
+```
+
+要求：
+
+```text
+按钮类控件包括 xxx_button、xxx_action 和 xxx_cta。
+如果按钮或操作控件有可见文字，文字必须在按钮背景或按钮 Control Frame 的固定文字框内水平居中。
+如果按钮或操作控件有可见文字，文字必须在按钮背景或按钮 Control Frame 的固定文字框内垂直居中。
+按钮文字可以使用固定宽度文字框，但不得保持左对齐或顶部对齐。
+不得用固定左边距模拟按钮文字位置，除非该按钮同时包含图标且 PRD 或 Layout Spec 明确要求图标 + 文字组合。
+只有图标 + 文字组合按钮允许文字相对图标偏移；整体内容组仍必须在按钮容器内视觉居中。
+校验按钮文字时，必须检查文字框内文字对齐方式为水平居中和垂直居中。
 ```
 
 ## 图标按钮标准结构
@@ -339,6 +385,38 @@ xxx_capsule
 胶囊控件必须是 Control Frame。
 胶囊控件内部只允许使用 capsule_bg、label、icon_container、icon 这类语义元素命名。
 如果胶囊包含下拉、切换、关闭等操作图标，必须按图标按钮或图标元素规则命名。
+```
+
+## Tab 控件标准表达
+
+Tab 控件使用：
+
+```text
+xxx_tabs
+  selected_tab_label
+  unselected_tab_label
+  selected_indicator
+```
+
+线框图阶段可见表达：
+
+```text
+选中 Tab：文字字重 600，底部显示黑色色块。
+未选中 Tab：文字正常字重。
+selected_indicator：width = 10，height = 4，fill = black。
+selected_indicator 必须在选中 Tab 固定文字框的水平中心线上对齐。
+```
+
+要求：
+
+```text
+不得使用方括号表达选中状态，例如 [ AI漫剧生成 ]。
+不得用大面积背景块、胶囊背景或灰色按钮样式表达普通 Tab 选中态。
+选中态必须由文字字重和 selected_indicator 共同表达。
+选中态文字可以使用固定宽度文字框，但文字必须在该文字框内水平、垂直居中。
+选中态文字与 selected_indicator 必须作为一个垂直组合处理，二者按固定文字框在水平方向居中对齐。
+校验 selected_indicator 时，必须同时校验文字框内文字对齐方式为水平居中和垂直居中。
+如果 PRD 明确要求胶囊式子 Tab，才按胶囊控件规则处理；否则按 Tab 控件标准表达。
 ```
 
 ## P0/P1/P2/P3 到线框图表达
